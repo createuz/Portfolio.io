@@ -7,7 +7,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('portfolio/', views.portfolio, name='portfolio'),
     path('resume/', views.resume, name='resume'),
-    path('skill/', views.skill, name='skill'),
     path('portfolio-detail/', views.portfolio_details, name='portfolio-detail'),
-    path('inner-page/', views.inner_page, name='inner-page'),
+    path('contact-form/', views.ContactFormView.as_view(), name='contact-form'),
+
 ]

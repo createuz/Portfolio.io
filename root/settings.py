@@ -14,7 +14,11 @@ SECRET_KEY = 'django-insecure-b#!21!#n66ke7g_=*@otu$%k5rk36node%^j3)%y5^6fdqz96i
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -22,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'user',
 ]
 

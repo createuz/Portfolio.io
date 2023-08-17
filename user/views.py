@@ -21,10 +21,6 @@ def resume(request):
     return render(request, 'resume.html')
 
 
-def skill(request):
-    return render(request, 'skill.html')
-
-
 def portfolio_details(request):
     return render(request, 'portfolio-details.html')
 
@@ -33,12 +29,44 @@ def inner_page(request):
     return render(request, 'inner-page.html')
 
 
-from django.http import HttpResponse
+from rest_framework import serializers, status, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.core.mail import send_mail
 
-from .tasks import send_email
+
+class ContactFormSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    email = serializers.EmailField()
+    subject = serializers.CharField(max_length=200)
+    message = serializers.CharField()
 
 
-def send_emails(request):
-    send_to = 'rajabovshohjahono3@gmail.com'
-    send_email.delay(send_to)
-    return HttpResponse("Mail request sent")
+class ContactFormView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request, format=None):
+        serializer = ContactFormSerializer(data=request.data)
+        if serializer.is_valid():
+            name = serializer.validated_data['name']
+            email = serializer.validated_data['email']
+            subject = serializer.validated_data['subject']
+            message = serializer.validated_data['message']
+
+            from_email = 'createuz.sh@gmail.com'  # Replace with your email
+            recipient_list = ['recipient@example.com']  # Replace with recipient's email
+
+            try:
+                send_mail(
+                    subject,
+                    f'Name: {name}\nEmail: {email}\nMessage: {message}',
+                    from_email,
+                    recipient_list,
+                    fail_silently=False,
+                )
+                return Response({'message': 'Your message has been sent. Thank you!'},
+                                status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({'message': 'An error occurred while sending the email.'},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
