@@ -52,9 +52,8 @@ class ContactFormView(APIView):
             email = serializer.validated_data['email']
             subject = serializer.validated_data['subject']
             message = serializer.validated_data['message']
-
-            from_email = 'createuz.sh@gmail.com'  # Replace with your email
-            recipient_list = ['recipient@example.com']  # Replace with recipient's email
+            from_email = 'createuz.sh@gmail.com'
+            recipient_list = ['recipient@example.com']
 
             try:
                 send_mail(
