@@ -25,8 +25,8 @@ def portfolio_details(request):
     return render(request, 'portfolio-details.html')
 
 
-# def inner_page(request):
-#     return render(request, 'inner-page.html')
+def inner_page(request):
+    return render(request, 'inner-page.html')
 
 
 from rest_framework import serializers, status, permissions
