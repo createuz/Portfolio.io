@@ -9,7 +9,7 @@ from django.conf import settings
 @shared_task()
 def send_email(email_address):
     print('send_email called')
-    sleep(5)  # Simulate expensive operation(s) that freeze Django
+    sleep(5)
     print(f'Sending email to: {email_address}')
     me = settings.EMAIL_USERNAME
     password = settings.EMAIL_PASSWORD
