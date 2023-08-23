@@ -25,8 +25,8 @@ def portfolio_details(request):
     return render(request, 'portfolio-details.html')
 
 
-# def inner_page(request):
-#     return render(request, 'inner-page.html')
+def inner_page(request):
+    return render(request, 'inner-page.html')
 
 
 from rest_framework import serializers, status, permissions
@@ -63,7 +63,7 @@ class ContactFormView(APIView):
                     recipient_list,
                     fail_silently=False,
                 )
-                return Response({'message': 'Your message has been sent. Thank you!'},
+                return Response({'message': 'Your message has been sent. Thank you! '},
                                 status=status.HTTP_201_CREATED)
             except Exception as e:
                 return Response({'message': 'An error occurred while sending the email.'},
