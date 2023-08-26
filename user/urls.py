@@ -8,6 +8,6 @@ urlpatterns = [
     path('portfolio/', views.portfolio, name='portfolio'),
     path('resume/', views.resume, name='resume'),
     path('portfolio-detail/', views.portfolio_details, name='portfolio-detail'),
-    # path('contact-form/', views.ContactFormView.as_view(), name='contact-form'),
+    path('contact-form/', views.ContactFormView.as_view(), name='contact-form'),
 
 ]
