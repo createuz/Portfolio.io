@@ -23,10 +23,10 @@ def resume(request):
 
 def portfolio_details(request):
     return render(request, 'portfolio-details.html')
-
-
-def inner_page(request):
-    return render(request, 'inner-page.html')
+#
+#
+# def inner_page(request):
+#     return render(request, 'inner-page.html')
 
 
 from rest_framework import serializers, status, permissions
@@ -35,11 +35,11 @@ from rest_framework.views import APIView
 from django.core.mail import send_mail
 
 
-class ContactFormSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    email = serializers.EmailField()
-    subject = serializers.CharField(max_length=200)
-    message = serializers.CharField()
+# class ContactFormSerializer(serializers.Serializer):
+#     name = serializers.CharField(max_length=100)
+#     email = serializers.EmailField()
+#     subject = serializers.CharField(max_length=200)
+#     message = serializers.CharField()
 
 
 class ContactFormView(APIView):
