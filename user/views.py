@@ -35,11 +35,11 @@ from rest_framework.views import APIView
 from django.core.mail import send_mail
 
 
-# class ContactFormSerializer(serializers.Serializer):
-#     name = serializers.CharField(max_length=100)
-#     email = serializers.EmailField()
-#     subject = serializers.CharField(max_length=200)
-#     message = serializers.CharField()
+class ContactFormSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    email = serializers.EmailField()
+    subject = serializers.CharField(max_length=200)
+    message = serializers.CharField()
 
 
 class ContactFormView(APIView):
