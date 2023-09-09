@@ -18,3 +18,20 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+'''
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/www/Portfolio.io
+ExecStart=/var/www/Portfolio.io/venv/bin/python3.11 manage.py
+
+[Install]
+WantedBy=multi-user.target
+
+'''
